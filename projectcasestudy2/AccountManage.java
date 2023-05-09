@@ -97,8 +97,10 @@ public class AccountManage implements Manage<Account> , IOFile<Account> {
 
     @Override
     public Account update() {
+        displayAll();
         Account account = getById();
         if(account != null) {
+
             System.out.println("Enter new username: ");
             String username = scanner.nextLine();
             account.setUsername(username);

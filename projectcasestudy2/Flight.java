@@ -1,7 +1,9 @@
 package projectcasestudy2;
 
-public class Flight {
-    public Object bookSeat;
+import java.io.Serializable;
+
+public class Flight implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String flightCode;
     private String departure;
     private String destination;
