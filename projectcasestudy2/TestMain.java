@@ -115,7 +115,7 @@ public class TestMain {
                     bookingTickets.cancellationBooking();
                     break;
                 case 3:
-
+                    bookingTickets.payment();
                     break;
                 case 0:
                     System.out.println("Exit!");
