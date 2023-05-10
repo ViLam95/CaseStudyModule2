@@ -50,6 +50,7 @@ public class AccountManage implements Manage<Account> , IOFile<Account> {
             isDuplicateEmail = false;
             for (Account account:accounts) {
                 if (account.getEmail().equals(email)){
+                    isDuplicateEmail = true;
                     System.out.println("Email already in use. Please re-enter another email.");
                     break;
                 }

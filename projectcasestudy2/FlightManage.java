@@ -1,6 +1,7 @@
 package projectcasestudy2;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,6 +10,30 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     private ArrayList<Flight> flights;
     Scanner scanner;
     String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/flightmanage.txt";
+
+    public ArrayList<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(ArrayList<Flight> flights) {
+        this.flights = flights;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public void setScanner(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    public String getPATH_FILE() {
+        return PATH_FILE;
+    }
+
+    public void setPATH_FILE(String PATH_FILE) {
+        this.PATH_FILE = PATH_FILE;
+    }
 
     public FlightManage() {
         scanner = new Scanner(System.in);
@@ -120,7 +145,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
         boolean foundFlight = false;
         for (Flight flight: flights){
             if(flight.getFlightCode().equals(flightCode)){
-                System.out.println("Flight information:");
+                System.out.println("========== FLIGHT INFORMATION ==========:");
                 System.out.println("FLIGHT CODE: " + flight.getFlightCode());
                 System.out.println("DEPARTURE: " + flight.getDeparture());
                 System.out.println("DESTINATION: " + flight.getDestination());
@@ -163,71 +188,105 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     }
 
 
-    public void bookTicket(){
+//    public void bookTicket(){
+//        displayAll();
+//        System.out.println("Enter flight code: ");
+//        String flightCode = scanner.nextLine();
+//
+//        boolean foundFlight = false;
+//        for (Flight flight:flights) {
+//            if(flight.getFlightCode().equals(flightCode)){
+//                System.out.println("flight code is: " + flightCode);
+//                foundFlight = true;
+//                System.out.println("Ticket class (1: Economy, 2: Business class):");
+//                int seatClass = Integer.parseInt(scanner.nextLine());
+//                String seat = "";
+//                if(seatClass == 1){
+//                    seat = "ECONOMY";
+//                } else if(seatClass == 2){
+//                    seat = "BUSINESS CLASS";
+//                }
+//                System.out.println(seat);
+//
+//                if(seatClass != 1 && seatClass != 2){
+//                    System.out.println("Invalid ticket class.");
+//                    return;
+//                }
+//                System.out.println("Number of tickets to book: ");
+//                int numTickets = Integer.parseInt(scanner.nextLine());
+//
+//
+//                double price;
+//                if(seatClass == 2){
+//                    price = flight.getPriceTicket() * 2;
+//                } else {
+//                    price = flight.getPriceTicket();
+//                }
+//                if (numTickets > flight.getQuantityTickets()){
+//                    System.out.println("There are not enough tickets for your request.");
+//                    return;
+//                }
+//
+//                double totalCost = price * numTickets;
+//                System.out.println("========== BOOKING INFORMATION ==========");
+//                System.out.println("FLIGHT CODE: " + flight.getFlightCode());
+//                System.out.println("DEPARTURE: " + flight.getDeparture());
+//                System.out.println("DESTINATION: " + flight.getDestination());
+//                System.out.println("DEPARTURE TIME: " + flight.getDepartureTime());
+//                System.out.println("DESTINATION TIME: " + flight.getDestinationTime());
+//                System.out.println("SEAT CLASS: " + seat);
+//                System.out.println("NUMBER TICKETS: " + numTickets);
+//                System.out.println("Total cost is: " + totalCost);
+//
+//                System.out.println("Booking confirmation? (Y/N)!");
+//                String confirmation = scanner.nextLine();
+//                if(confirmation.equalsIgnoreCase("Y")){
+//                    System.out.println("Thank you for booking!");
+//                    updateQuantityTicket(flightCode,numTickets);
+//                }
+//                else if(confirmation.equalsIgnoreCase("N")){
+//                    System.out.println("You just canceled booking!");
+//                }
+//            }
+//
+//        }
+//        if(!foundFlight){
+//            System.out.println("No flight found with code " + flightCode);
+//        }
+//    }
+// public void updateQuantityTicket(String flightCode, int numTickets){
+//    for (Flight flight:flights){
+//        if(flight.getFlightCode().equals(flightCode)){
+//            flight.setQuantityTickets(flight.getQuantityTickets() - numTickets);
+//        }
+//    }
+// }
+ public void cancellationBooking(int numTickets){
         displayAll();
         System.out.println("Enter flight code: ");
         String flightCode = scanner.nextLine();
 
-        boolean foundFlight = false;
-        for (Flight flight:flights) {
-            if(flight.getFlightCode().equals(flightCode)){
-                System.out.println("flight code is: " + flightCode);
-                foundFlight = true;
-            }
-            System.out.println("Ticket class (1: Economy, 2: Business class):");
-            int seatClass = Integer.parseInt(scanner.nextLine());
-            if(seatClass != 1 && seatClass != 2){
-                System.out.println("Invalid ticket class.");
-                return;
-            }
-            System.out.println("Number of tickets to book: ");
-            int numTickets = Integer.parseInt(scanner.nextLine());
+        Flight flight = null;
+     for (Flight fl :flights) {
+         if(fl.getFlightCode().equals(flightCode)){
+             flight = fl;
+             break;
+         }
+     }
+     if (flight == null){
+         System.out.println("No flight found with code " + flightCode);
+     }
+     System.out.println("Enter the number of tickets to cancel: ");
+     int cancelNumTickets = Integer.parseInt(scanner.nextLine());
+     if(cancelNumTickets < numTickets){
 
+     }
 
-            double price;
-            if(seatClass == 2){
-                price = flight.getPriceTicket() * 2;
-            } else {
-                price = flight.getPriceTicket();
-            }
-            if (numTickets > flight.getQuantityTickets()){
-                System.out.println("There are not enough tickets for your request.");
-                return;
-            }
-
-            double totalCost = price * numTickets;
-            System.out.println("Total cost is: " + totalCost);
-
-            System.out.println("Booking confirmation? (Y/N)!");
-            String confirmation = scanner.nextLine();
-            if(confirmation.equalsIgnoreCase("Y")){
-                System.out.println("Thank you for booking!");
-                updateQuantityTicket(flightCode,numTickets);
-            }
-            else if(confirmation.equalsIgnoreCase("N")){
-                System.out.println("You just canceled booking!");
-            }
-        }
-        if(!foundFlight){
-            System.out.println("No flight found with code " + flightCode);
-        }
-    }
- private void updateQuantityTicket(String flightCode, int numTickets){
-    for (Flight flight:flights){
-        if(flight.getFlightCode().equals(flightCode)){
-            flight.setQuantityTickets(flight.getQuantityTickets() - numTickets);
-        }
-    }
- }
- public void cancellationBooking(){
-        displayAll();
-        System.out.println("Enter flight code: ");
-        String flightCode = scanner.nextLine();
  }
     @Override
     public void writeBinary(List<Flight> e, String path) {
         File file = new File(path);
-        try (ObjectOutputStream obs = new ObjectOutputStream(new FileOutputStream(file))) {
+        try (ObjectOutputStream obs = new ObjectOutputStream(Files.newOutputStream(file.toPath()))) {
             obs.writeObject(e);
         }catch (IOException ioException){
             System.out.println(ioException.getMessage());
@@ -238,7 +297,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     public ArrayList<Flight> readBinary(String path) {
         File file = new File(path);
         ArrayList<Flight> flights = new ArrayList<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))){
+        try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(file.toPath()))){
             flights = (ArrayList<Flight>) ois.readObject();
         }catch (IOException | ClassNotFoundException ioException){
             System.out.println(ioException.getMessage());

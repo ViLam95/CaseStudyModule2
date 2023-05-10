@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class TestMain {
     private static final Scanner scanner = new Scanner(System.in);
     private static FlightManage flightManage= new FlightManage();
+    private static BookingTickets bookingTickets = new BookingTickets();
     public static void adminMenu(AccountManage accountManage){
+        flightManage = new FlightManage();
         int choice = -1;
-        do{
+        do {
             System.out.println("====================Menu====================");
             System.out.println("1. Create a new account");
             System.out.println("2. Update account information");
@@ -17,12 +19,12 @@ public class TestMain {
             System.out.println("0. Log out");
 
             System.out.println("Enter your selection:");
-            try{
-                choice =Integer.parseInt(scanner.nextLine());
-            } catch (Exception e){
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            switch (choice){
+            switch (choice) {
                 case 1:
                     accountManage.creat();
                     break;
@@ -43,15 +45,12 @@ public class TestMain {
                 default:
                     System.out.println("Account does not exist. Please choose again!");
             }
-            if (choice==0){
-                break;
-            }
-        }while (true);
+        } while (choice != 0);
     }
 
     public static void flightMenu(FlightManage flightManage){
         int choice = -1;
-        while (true) {
+        do {
             System.out.println("==========Menu==========");
             System.out.println("1. Creat new flight.");
             System.out.println("2. Update flight information.");
@@ -62,9 +61,9 @@ public class TestMain {
             System.out.println("0. Exit!");
 
             System.out.println("Enter your selection:");
-            try{
-                choice =Integer.parseInt(scanner.nextLine());
-            } catch (Exception e){
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             switch (choice) {
@@ -90,15 +89,12 @@ public class TestMain {
                     System.out.println("Exit!");
                     break;
             }
-            if (choice==0){
-                break;
-            }
-        }
+        } while (choice != 0);
     }
 
-    public static void bookingMenu(FlightManage flightManage){
+    public static void bookingMenu(){
         int choice = -1;
-        while (true) {
+        do {
             System.out.println("==========Menu==========");
             System.out.println("1. Booking ");
             System.out.println("2. Cancel Booking ");
@@ -106,27 +102,26 @@ public class TestMain {
             System.out.println("0. Exit!");
 
             System.out.println("Enter your selection:");
-            try{
-                choice =Integer.parseInt(scanner.nextLine());
-            } catch (Exception e){
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            switch (choice){
+            switch (choice) {
                 case 1:
-                    flightManage.bookTicket();
+                    bookingTickets.bookTicket();
                     break;
                 case 2:
+                    bookingTickets.cancellationBooking();
                     break;
                 case 3:
+
                     break;
                 case 0:
                     System.out.println("Exit!");
                     break;
             }
-            if (choice==0){
-                break;
-            }
-        }
+        } while (choice != 0);
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -156,7 +151,7 @@ public class TestMain {
                     }
                     else if(res == 0){
                         System.out.println("Logged in successfully.");
-                        bookingMenu(flightManage);
+                        bookingMenu();
                     }
                     else {
                         System.out.println("Login failed.");
