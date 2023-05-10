@@ -1,7 +1,5 @@
 package projectcasestudy2;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class BookingTickets extends FlightManage {
     static int  numTickets = 0;
@@ -67,6 +65,7 @@ public class BookingTickets extends FlightManage {
             }
 
         }
+        super.writeBinary(super.getFlights(),super.PATH_FILE);
         if(!foundFlight){
             System.out.println("No flight found with code " + flightCode);
         }
@@ -103,5 +102,6 @@ public class BookingTickets extends FlightManage {
             updateQuantityTicket(flightCode, (-cancelNumTickets));
             System.out.println("Successfully canceled ticket!");
         }
+        super.writeBinary(super.getFlights(),super.PATH_FILE);
     }
 }
