@@ -2,6 +2,7 @@ package projectcasestudy2.service;
 
 import projectcasestudy2.io.IOFile;
 import projectcasestudy2.io.Manage;
+import projectcasestudy2.model.Account;
 import projectcasestudy2.model.Flight;
 
 import java.io.*;
@@ -12,7 +13,7 @@ import java.util.Scanner;
 
 public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     private ArrayList<Flight> flights;
-    public Scanner scanner;
+    public static Scanner scanner;
     String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/data/flightmanage.txt";
 
     public ArrayList<Flight> getFlights() {
@@ -29,8 +30,19 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     @Override
     public Flight creat() {
         flights = readBinary(PATH_FILE);
-        System.out.println("Enter flight code: ");
-        String flightCode = scanner.nextLine();
+        String flightCode = null;
+        boolean isDuplicateFlightCode = true;
+        while (isDuplicateFlightCode){
+            System.out.println("Enter new flight: ");
+            flightCode = scanner.nextLine();
+            isDuplicateFlightCode = false;
+            for (Flight flight: flights){
+                if(flight.getFlightCode().equals(flightCode)){
+                    isDuplicateFlightCode = true;
+                    System.out.println("Flight code has been duplicated, please re-enter it!");
+                }
+            }
+        }
 
         System.out.println("Enter departure: ");
         String departure = scanner.nextLine();
@@ -45,7 +57,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
         String destinationTime = scanner.nextLine();
 
         System.out.println("Enter quantity tickets: ");
-        int quantityTickets = Integer.parseInt(scanner.nextLine());
+        int quantityTickets = inputNum();
 
         System.out.println("Enter price of ticket: ");
         double priceTicket = Double.parseDouble(scanner.nextLine());
@@ -84,7 +96,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
                 flight.setDestinationTime(destinationTime);
 
                 System.out.println("Enter new quantity tickets: ");
-                int quantityTickets = Integer.parseInt(scanner.nextLine());
+                int quantityTickets = inputNum();
                 flight.setQuantityTickets(quantityTickets);
 
                 System.out.println("Enter new price ticket: ");
@@ -173,6 +185,19 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
         }
 
     }
+    public static int inputNum() {
+        int x;
+        do {
+            try {
+                x = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Error : " + e.getMessage());
+            }
+        } while (true);
+        return x;
+    }
+
     @Override
     public void writeBinary(List<Flight> e, String path) {
         File file = new File(path);

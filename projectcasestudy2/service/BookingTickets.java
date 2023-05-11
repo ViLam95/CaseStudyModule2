@@ -18,7 +18,7 @@ public class BookingTickets extends FlightManage {
                 System.out.println("flight code is: " + flightCode);
                 foundFlight = true;
                 System.out.println("Ticket class (1: Economy, 2: Business class):");
-                int seatClass = Integer.parseInt(scanner.nextLine());
+                int seatClass = inputNum();
                 String seat = "";
                 if (seatClass == 1) {
                     seat = "ECONOMY";
@@ -99,7 +99,7 @@ public class BookingTickets extends FlightManage {
             System.out.println("No flight found with code " + flightCode);
         }
         System.out.println("Enter the number of tickets to cancel: ");
-        int cancelNumTickets = Integer.parseInt(scanner.nextLine());
+        int cancelNumTickets = inputNum();
         if (cancelNumTickets > numTickets) {
             System.out.println("The number of tickets you want to cancel is greater than the number of tickets booked!");
         } else {
