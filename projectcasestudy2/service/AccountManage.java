@@ -1,4 +1,8 @@
-package projectcasestudy2;
+package projectcasestudy2.service;
+
+import projectcasestudy2.io.IOFile;
+import projectcasestudy2.io.Manage;
+import projectcasestudy2.model.Account;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -6,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class AccountManage implements Manage<Account> , IOFile<Account> {
+public class AccountManage implements Manage<Account>, IOFile<Account> {
     private ArrayList<Account> accounts;
     Scanner scanner;
-    String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/accountlist.txt";
+    String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/data/accountlist.txt";
 
     public AccountManage() {
         scanner = new Scanner(System.in);
@@ -21,7 +25,6 @@ public class AccountManage implements Manage<Account> , IOFile<Account> {
     @Override
     public Account creat() {
         int id = accounts.size() + 1;
-
         String username = null;
         boolean isDuplicateUsername = true;
         while (isDuplicateUsername){

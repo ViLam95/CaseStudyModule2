@@ -1,4 +1,4 @@
-package projectcasestudy2;
+package projectcasestudy2.model;
 
 import java.io.Serializable;
 

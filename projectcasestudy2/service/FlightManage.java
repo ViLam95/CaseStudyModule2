@@ -1,4 +1,8 @@
-package projectcasestudy2;
+package projectcasestudy2.service;
+
+import projectcasestudy2.io.IOFile;
+import projectcasestudy2.io.Manage;
+import projectcasestudy2.model.Flight;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -8,8 +12,8 @@ import java.util.Scanner;
 
 public class FlightManage implements Manage<Flight>, IOFile<Flight> {
     private ArrayList<Flight> flights;
-    Scanner scanner;
-    String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/flightmanage.txt";
+    public Scanner scanner;
+    String PATH_FILE = "/Users/viquoclam/Documents/CaseStudyM2/projectcasestudy2/data/flightmanage.txt";
 
     public ArrayList<Flight> getFlights() {
         return flights;
@@ -24,6 +28,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
 
     @Override
     public Flight creat() {
+        flights = readBinary(PATH_FILE);
         System.out.println("Enter flight code: ");
         String flightCode = scanner.nextLine();
 
@@ -146,6 +151,7 @@ public class FlightManage implements Manage<Flight>, IOFile<Flight> {
 
     @Override
     public void displayAll() {
+        flights = readBinary(PATH_FILE);
         for (Flight flight: flights) {
             System.out.println(flight);
         }

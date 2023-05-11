@@ -1,8 +1,10 @@
-package projectcasestudy2;
+package projectcasestudy2.service;
 
+
+import projectcasestudy2.model.Flight;
 
 public class BookingTickets extends FlightManage {
-    static int numTickets = 0;
+    public static int numTickets = 0;
     static double totalCost = 0;
 
     public void bookTicket() {
@@ -68,7 +70,8 @@ public class BookingTickets extends FlightManage {
         }
         if (!foundFlight) {
             System.out.println("No flight found with code " + flightCode);
-        }super.writeBinary(super.getFlights(), super.PATH_FILE);
+        }
+        super.writeBinary(super.getFlights(), super.PATH_FILE);
     }
 
     public void updateQuantityTicket(String flightCode, int numTickets) {
@@ -110,30 +113,30 @@ public class BookingTickets extends FlightManage {
         super.writeBinary(super.getFlights(), super.PATH_FILE);
     }
 
-    public void payment() {
-        System.out.println("Enter flight code to pay: ");
-        String flightCode = scanner.nextLine();
-
-        Flight flight = null;
-        for (Flight fl : super.getFlights()) {
-            if (fl.getFlightCode().equals(flightCode)) {
-                flight = fl;
-                break;
-            }
-        }
-        if (flight == null) {
-            System.out.println("No flight found with code " + flightCode);
-        }
-        System.out.println("Total cost is: " + totalCost);
-        System.out.println("Are you sure you want to pay? (Y/N)!");
-        String confirmation = scanner.nextLine();
-        if (confirmation.equalsIgnoreCase("Y")) {
-            System.out.println("Thank you for paying!");
-        }
-        else if(confirmation.equalsIgnoreCase("N")) {
-            System.out.println("Cancel payment. Thank you for visiting our store!");
-        }
-        super.writeBinary(super.getFlights(),super.PATH_FILE);
-    }
+//    public void payment() {
+//        System.out.println("Enter flight code to pay: ");
+//        String flightCode = scanner.nextLine();
+//
+//        Flight flight = null;
+//        for (Flight fl : super.getFlights()) {
+//            if (fl.getFlightCode().equals(flightCode)) {
+//                flight = fl;
+//                break;
+//            }
+//        }
+//        if (flight == null) {
+//            System.out.println("No flight found with code " + flightCode);
+//        }
+//        System.out.println("Total cost is: " + totalCost);
+//        System.out.println("Are you sure you want to pay? (Y/N)!");
+//        String confirmation = scanner.nextLine();
+//        if (confirmation.equalsIgnoreCase("Y")) {
+//            System.out.println("Thank you for paying!");
+//        }
+//        else if(confirmation.equalsIgnoreCase("N")) {
+//            System.out.println("Cancel payment. Thank you for visiting our store!");
+//        }
+//        super.writeBinary(super.getFlights(),super.PATH_FILE);
+//    }
 
 }

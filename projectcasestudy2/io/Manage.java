@@ -1,4 +1,4 @@
-package projectcasestudy2;
+package projectcasestudy2.io;
 
 public interface Manage<E> {
     E creat();

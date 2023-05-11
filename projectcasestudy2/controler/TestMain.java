@@ -1,4 +1,8 @@
-package projectcasestudy2;
+package projectcasestudy2.controler;
+
+import projectcasestudy2.service.AccountManage;
+import projectcasestudy2.service.BookingTickets;
+import projectcasestudy2.service.FlightManage;
 
 import java.util.Scanner;
 
@@ -98,7 +102,6 @@ public class TestMain {
             System.out.println("==========Menu==========");
             System.out.println("1. Booking ");
             System.out.println("2. Cancel Booking ");
-            System.out.println("3. Payment ");
             System.out.println("0. Exit!");
 
             System.out.println("Enter your selection:");
@@ -114,10 +117,8 @@ public class TestMain {
                 case 2:
                     bookingTickets.cancellationBooking();
                     break;
-                case 3:
-                    bookingTickets.payment();
-                    break;
                 case 0:
+                    BookingTickets.numTickets = 0;
                     System.out.println("Exit!");
                     break;
             }
@@ -126,7 +127,6 @@ public class TestMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         AccountManage accountManage = new AccountManage();
-        new FlightManage();
         int choice = -1;
         do {
             System.out.println("==========Menu==========");
