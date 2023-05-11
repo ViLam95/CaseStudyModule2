@@ -84,13 +84,13 @@ public class Account implements Serializable {
     @Override
     public String toString() {
         return "Account {" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullname='" + fullName + '\n' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
+                "id= " + id +
+                ", username='" + username +
+                ", password='" + password +
+                ", fullname='" + fullName +
+                ", email='" + email +
+                ", phoneNumber='" + phoneNumber +
+                ", address='" + address +
                 '}';
     }
 }
